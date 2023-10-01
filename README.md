@@ -2,5 +2,5 @@
 
 ### cara penggunaan 
 ```
-./Go-pdfTOtxt file.pdf output.txt
+./go-PDftoTXT file.pdf output.txt
 ```
