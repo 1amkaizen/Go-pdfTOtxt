@@ -4,17 +4,10 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"time"
 )
 
-func displayLoading() {
-	for {
-		for _, r := range `-\|/` {
-			fmt.Printf("\rConverting PDF [%c]", r)
-			time.Sleep(100 * time.Millisecond)
-		}
-	}
-}
+
+
 
 func main() {
 	if len(os.Args) != 3 {
@@ -29,8 +22,6 @@ func main() {
 	outputFilePath := os.Args[2]
 
 	// Start goroutine to display loading animation
-	go displayLoading()
-
 	// Run pdftotext command to extract text from the PDF
 	cmd := exec.Command("pdftotext", pdfFilePath, outputFilePath)
 	cmd.Stdout = os.Stdout
