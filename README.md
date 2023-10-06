@@ -2,7 +2,7 @@
 
 ### Install
 ```
-go install github.com/1amkaizen/Go-pdfTOtxt@latest
+go install github.com/1amkaizen/go-pdfTOtxt@latest
 ```
 
 ### cara penggunaan 
