@@ -1,13 +1,11 @@
+// main.go
+
 package main
 
 import (
 	"fmt"
 	"os"
-	"os/exec"
 )
-
-
-
 
 func main() {
 	if len(os.Args) != 3 {
@@ -15,24 +13,24 @@ func main() {
 		return
 	}
 
-	// Input PDF file path
 	pdfFilePath := os.Args[1]
-
-	// Output text file path
 	outputFilePath := os.Args[2]
 
-	// Start goroutine to display loading animation
-	// Run pdftotext command to extract text from the PDF
-	cmd := exec.Command("pdftotext", pdfFilePath, outputFilePath)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-
-	err := cmd.Run()
+	// Ekstraksi teks dari PDF
+	err := extractTextFromPDF(pdfFilePath, outputFilePath)
 	if err != nil {
-		fmt.Printf("\nError: %v\n", err)
+		fmt.Printf("Error: %v\n", err)
 		return
 	}
 
-	// Stop the loading animation
-	fmt.Print("\rConverting PDF Done!\n")
+	// Mendapatkan metadata dari PDF
+	metadata, err := getPDFMetadata(pdfFilePath)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+		return
+	}
+
+	fmt.Println("PDF Metadata:")
+	fmt.Println(metadata)
 }
+
